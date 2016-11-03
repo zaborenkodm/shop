@@ -18,6 +18,9 @@ require_relative 'book.rb'
 require_relative 'disk.rb'
 require_relative 'movie.rb'
 
+# В этой переменной будем хранить стоимость всех покупок
+total_price = 0
+
 # Создадим массив продуктов и наполним его фильмами, книгами и музыкой
 products = []
 
@@ -41,8 +44,23 @@ product = Disk.new(590, 10)
 product.update(:album_name => 'Turbo', :artist_name => 'Judas Priest', :genre => 'Heavy Metal')
 products.push(product)
 
-# Покажем пользователю ассортимент и предложим что-нибудь купить
-Product.showcase(products)
+# В переменной choice будем хранить выбор пользователя
+choice = nil
 
-# Купит какой-нибудь фильм
-products[1].buy
+# Пока пользователь не захочет выйти
+while(choice != 'x')
+  # Покажем пользователю ассортимент и предложим что-нибудь купить
+  Product.showcase(products)
+  puts "x. Покинуть магазин"0
+  choice = STDIN.gets.chomp
+
+  # Проверим, что пользователь выбрал какой-то продукт
+  if(choice != 'x')
+    # Купим продукт и увеличим стоимость покупок
+    product = products[choice.to_i]
+    total_price += product.buy
+  end
+end
+
+# Наконец, покажем, сколько должен пользователь
+puts "Спасибо за покупки, с Вас #{total_price} руб."

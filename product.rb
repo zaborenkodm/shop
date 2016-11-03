@@ -33,7 +33,9 @@ class Product
 
   def buy
     if @amount_available > 0
+      puts "* * *"
       puts "Вы купили товар #{info}"
+      puts "* * *\n\n"
 
       @amount_available -= 1
       price
