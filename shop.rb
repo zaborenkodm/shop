@@ -18,9 +18,31 @@ require_relative 'book.rb'
 require_relative 'disk.rb'
 require_relative 'movie.rb'
 
-# новый товар - фильм
-leon = Movie.new(990, 4)
+# Создадим массив продуктов и наполним его фильмами, книгами и музыкой
+products = []
 
-leon.update(:title => 'Леон', :director_name => 'Люк Бессон', :year => '1994')
+product = Movie.new(990, 5)
+product.update(:title => 'Леон', :director_name => 'Люк Бессон', :year => '1994')
+products.push(product)
 
-puts leon.show
+product = Movie.new(990, 2)
+product.update(:title => 'Человек дождя', :director_name => 'Барри Левинсон', :year => '1988')
+products.push(product)
+
+product = Movie.new(1490, 1)
+product.update(:title => 'Тёмный рыцарь', :director_name => 'Кристофер Нолан', :year => '2008')
+products.push(product)
+
+product = Book.new(349, 10)
+product.update(:title => 'Приключения Тома Сойера', :author_name => 'Марк Твен')
+products.push(product)
+
+product = Disk.new(590, 10)
+product.update(:album_name => 'Turbo', :artist_name => 'Judas Priest', :genre => 'Heavy Metal')
+products.push(product)
+
+# Покажем пользователю ассортимент и предложим что-нибудь купить
+Product.showcase(products)
+
+# Купит какой-нибудь фильм
+products[1].buy

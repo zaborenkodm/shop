@@ -20,4 +20,26 @@ class Product
   def show
     "#{info} - #{@price} руб. [осталось: #{@amount_available}]"
   end
+
+  def self.showcase(products)
+    puts "Что хотим купить?\n\n"
+
+    products.each_with_index do |product, index|
+      puts "#{index}: #{product.show}"
+    end
+
+    puts "\n"
+  end
+
+  def buy
+    if @amount_available > 0
+      puts "Вы купили товар #{info}"
+
+      @amount_available -= 1
+      price
+    else
+      puts "К сожалению, больше нет"
+      0
+    end
+  end
 end
